@@ -1,0 +1,4 @@
+<%= simple_form_for @list do |f| %>
+  <%= f.input :name, label: 'Your movie genre please', error: 'Your movie genre is mandatory, please specify one', hint: 'has to be unique.' %>
+  <%= f.button :submit %>
+<% end %>
