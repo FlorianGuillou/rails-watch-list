@@ -1,18 +1,28 @@
-<h1><%= @list.name %></h1>
-<% if @list.photo.attached? %>
-  <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
-<% end %>
-<br>
 
-<% @list.bookmarks.each do |movie| %>
-  <%@movie = Movie.find(movie.movie_id) %>
-  <%= @movie.title %> <li><%= "⭐"*@movie.rating.round %></li>
-  <img src="<%= @movie.poster_url%>" alt= "<%= @movie.title%>">
-  <%= movie.comment %>
-  <%= link_to bookmark_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
-    <i class="fa-solid fa-trash-can"></i>
+
+<div class="banner-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= @list.photo.attached? ? cl_image_path(@list.photo.key) : asset_path('') %>)">
+  <%= @list.name %>
+</div>
+
+
+<div class="card-trip">
+  <% @list.bookmarks.each do |movie| %>
+    <%@movie = Movie.find(movie.movie_id) %>
+    <img class="poster" src="<%= @movie.poster_url%>" alt= "<%= @movie.title%>">
+    <div class="card-trip-infos">
+      <div>
+        <%= @movie.title %> <li>
+        <p><%= movie.comment %></p>
+      </div>
+      <h2 class="card-trip-pricing"><%= "⭐"*@movie.rating.round %></li></h2>
+      <%= link_to bookmark_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+        <i class="fa-solid fa-trash-can"></i>
+      <% end %>
+    </div>
   <% end %>
-  <br>
-<% end %>
-<br>
-<%= link_to "Add a bookmark", new_list_bookmark_path(@list.id) %>
+</div>
+
+
+
+<%= link_to "Add a movie", new_list_bookmark_path(@list.id) %>
+<%= link_to "Delete list", "/lists/#{@list.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
