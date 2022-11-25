@@ -15,6 +15,7 @@
         <p><%= movie.comment %></p>
       </div>
       <h2 class="card-trip-pricing"><%= "⭐"*@movie.rating.round %></li></h2>
+      <br>
       <%= link_to bookmark_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
         <i class="fa-solid fa-trash-can"></i>
       <% end %>
@@ -25,4 +26,7 @@
 
 
 <%= link_to "Add a movie", new_list_bookmark_path(@list.id) %>
+<br>
 <%= link_to "Delete list", "/lists/#{@list.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<br>
+<%= link_to "Home page", root_path%>
