@@ -1,10 +1,21 @@
-<h1>Lists#index</h1>
-<p>Find me in app/views/lists/index.html.erb</p>
+<div class="card-banner"
+style="background-image: url(https://static.vecteezy.com/system/resources/previews/005/502/524/original/cinema-background-concept-movie-theater-object-on-red-curtain-background-and-movie-time-with-electric-bulbs-frame-illustration-free-vector.jpg)">
+  By Père Cerise🍒
+  <div>
+    <%# <input id="button-scroll" type="button" onClick="document.getElementById('middle').scrollIntoView();" /> %>
+    <a id="scroll-down" href="#down">Start experience</a>
+  </div>
+</div>
 
-<ul>
+
+<div id="down" class="grid-container">
   <% @lists.each do |list| %>
-  <%= link_to "#{list.name}", list_path(list.id) %>
+    <div class="grid-item">
+      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= list.photo.attached? ? cl_image_path(list.photo.key) : asset_path('') %>)">
+        <%= link_to "#{list.name}", list_path(list.id) %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
 <br>
 <%= link_to 'Add a list', new_list_path %>
