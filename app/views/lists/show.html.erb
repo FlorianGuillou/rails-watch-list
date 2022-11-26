@@ -4,29 +4,30 @@
   <%= @list.name %>
 </div>
 
-
-<div class="card-trip">
-  <% @list.bookmarks.each do |movie| %>
-    <%@movie = Movie.find(movie.movie_id) %>
-    <img class="poster" src="<%= @movie.poster_url%>" alt= "<%= @movie.title%>">
-    <div class="card-trip-infos">
-      <div>
-        <%= @movie.title %> <li>
-        <p><%= movie.comment %></p>
+<div class= "grid-movie">
+  <div class="card-trip">
+    <% @list.bookmarks.each do |movie| %>
+      <%@movie = Movie.find(movie.movie_id) %>
+      <img class="poster" src="<%= @movie.poster_url%>" alt= "<%= @movie.title%>">
+      <div class="card-trip-infos">
+        <div>
+          <%= @movie.title %> <li>
+          <p><%= movie.comment %></p>
+        </div>
+        <h2 class="card-trip-pricing"><%= "⭐"*@movie.rating.round %></li></h2>
+        <br>
+        <%= link_to bookmark_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
+          <i class="fa-solid fa-trash-can"></i>
+        <% end %>
       </div>
-      <h2 class="card-trip-pricing"><%= "⭐"*@movie.rating.round %></li></h2>
-      <br>
-      <%= link_to bookmark_path(movie), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do%>
-        <i class="fa-solid fa-trash-can"></i>
-      <% end %>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
 
 
 
 <%= link_to "Add a movie", new_list_bookmark_path(@list.id) %>
 <br>
-<%= link_to "Delete list", "/lists/#{@list.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+<%= link_to "Delete category", "/lists/#{@list.id}", data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
 <br>
 <%= link_to "Home page", root_path%>

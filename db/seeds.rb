@@ -9,7 +9,7 @@
 url = "http://tmdb.lewagon.com/movie/top_rated"
 20.times do |i|
   puts "Importing movies from page #{i + 1}"
-  movies = JSON.parse(URI.open("#{url}?page=#{i + 1}").read)['results']
+  movies = JSON.parse(URI.parse("#{url}?page=#{i + 1}").read)['results']
   movies.each do |movie|
     puts "Creating #{movie['title']}"
     base_poster_url = 'https://image.tmdb.org/t/p/original'

@@ -88,6 +88,8 @@ html {
   font-size: 48px;
  }
 
+// #####################################################################################
+
  .banner-category {
   background-size: cover;
   background-position: center;
@@ -115,6 +117,7 @@ html {
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   width: 400px;
+  position: relative;
 }
 
 .card-trip > img {
@@ -149,4 +152,11 @@ html {
   right: 16px;
   top: -20px;
   width: 40px;
+}
+
+.grid-movie {
+  display: inline-grid;
+  column-gap: 50px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-left: 100px;
 }
